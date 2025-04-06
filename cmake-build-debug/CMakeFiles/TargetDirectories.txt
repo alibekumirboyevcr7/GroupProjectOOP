@@ -1,0 +1,3 @@
+C:/Users/Predator/CLionProjects/GroupProjectOOP/cmake-build-debug/CMakeFiles/GroupProjectOOP.dir
+C:/Users/Predator/CLionProjects/GroupProjectOOP/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Predator/CLionProjects/GroupProjectOOP/cmake-build-debug/CMakeFiles/rebuild_cache.dir
