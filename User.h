@@ -4,27 +4,29 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 class User {
 protected:
     int id;
-    std::string name;
-    std::string email;
-    std::string password;
-    std::string address;
-    std::string phone;
-    std::vector<int> wishlist; // Stores product IDs
-    std::vector<int> orderHistory; // Stores order IDs
+    string name;
+    string email;
+    string password;
+    string address;
+    string phone;
+    vector<int> wishlist;
+    vector<int> orderHistory;
 
 public:
-    User(int id, std::string name, std::string email, std::string password, std::string address, std::string phone);
+    User(int id, string name, string email, string password, string address, string phone);
     virtual ~User();
 
     void addToWishlist(int productId);
     void removeFromWishlist(int productId);
     void addOrder(int orderId);
-    std::string getEmail() const { return email; }
-    std::string getPassword() const { return password; }
-    std::string getName() const { return name; }
+    string getEmail() const { return email; }
+    string getPassword() const { return password; }
+    string getName() const { return name; }
 
     void displayUserInfo() const;
 };

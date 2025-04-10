@@ -3,20 +3,24 @@
 
 #include <string>
 
+using namespace std;
+
 class Product {
 private:
     int id;
-    std::string name;
-    std::string description;
+    string name;
+    string description;
     float price;
     int stock;
 
 public:
-    Product(int id, std::string name, std::string description, float price, int stock);
+    Product(int id, string name, string description, float price, int stock);
 
-    // Getter methods (Add these)
     int getId() const { return id; }
     float getPrice() const { return price; }
+    string getName() const { return name; }
+    int getStock() const { return stock; }
+    bool isInStock() const { return stock > 0; }
 
     void updateStock(int quantity);
     void displayProductInfo() const;

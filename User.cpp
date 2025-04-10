@@ -1,19 +1,30 @@
 #include "User.h"
 #include <iostream>
-#include <algorithm> // Include for std::remove
+#include <algorithm>
 
-User::User(int id, std::string name, std::string email, std::string password, std::string address, std::string phone)
+using namespace std;
+
+User::User(int id, string name, string email, string password, string address, string phone)
     : id(id), name(name), email(email), password(password), address(address), phone(phone) {}
 
 User::~User() {}
 
 void User::addToWishlist(int productId) {
-    wishlist.push_back(productId);
+    if (find(wishlist.begin(), wishlist.end(), productId) == wishlist.end()) {
+        wishlist.push_back(productId);
+    } else {
+        cout << "Product already in wishlist.\n";
+    }
 }
 
 void User::removeFromWishlist(int productId) {
-    auto it = std::remove(wishlist.begin(), wishlist.end(), productId);
-    wishlist.erase(it, wishlist.end()); // Corrected: Use the returned iterator
+    auto it = remove(wishlist.begin(), wishlist.end(), productId);
+    if (it != wishlist.end()) {
+        wishlist.erase(it, wishlist.end());
+        cout << "Product removed from wishlist.\n";
+    } else {
+        cout << "Product not found in wishlist.\n";
+    }
 }
 
 void User::addOrder(int orderId) {
@@ -21,5 +32,5 @@ void User::addOrder(int orderId) {
 }
 
 void User::displayUserInfo() const {
-    std::cout << "User: " << name << " (" << email << ")" << std::endl;
+    cout << "User: " << name << " (" << email << ")" << endl;
 }

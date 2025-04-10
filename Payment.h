@@ -3,19 +3,21 @@
 
 #include <string>
 
+using namespace std;
+
 class Payment {
 private:
     int id;
     float amount;
-    std::string method;
-    std::string status;
+    string method;
+    string status;
     float balance;
 
 public:
-    Payment(int id, float amount, std::string method);
+    Payment(int id, float amount, string method);
     void processPayment();
     void displayPaymentInfo() const;
-    std::string getStatus() const { return status; }
+    string getStatus() const { return status; }
 };
 
 #endif

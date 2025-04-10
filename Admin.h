@@ -2,21 +2,24 @@
 #define ADMIN_H
 
 #include "User.h"
+#include <vector>
+#include <string>
+
+using namespace std;
 
 class Admin : public User {
 private:
-    std::vector<std::string> permissions;
+    vector<string> permissions;
 
 public:
-    Admin(int id, std::string name, std::string email, std::string password, std::string address, std::string phone);
-    void addPermission(std::string permission);
-    void removePermission(std::string permission);
+    Admin(int id, string name, string email, string password, string address, string phone);
+    void addPermission(string permission);
+    void removePermission(string permission);
     void displayPermissions() const;
 
-    std::string getEmail() const { return email; }
-    std::string getPassword() const { return password; }
-    std::string getName() const { return name; }
-
+    string getEmail() const { return email; }
+    string getPassword() const { return password; }
+    string getName() const { return name; }
 };
 
 #endif

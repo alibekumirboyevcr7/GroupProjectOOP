@@ -4,19 +4,22 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 class Store {
 private:
     int id;
-    std::string name;
-    std::string location;
+    string name;
+    string location;
     float rating;
-    std::vector<int> products; // Stores product IDs
+    vector<int> products;
 
 public:
-    Store(int id, std::string name, std::string location, float rating);
+    Store(int id, string name, string location, float rating);
     void addProduct(int productId);
     void removeProduct(int productId);
     void displayStoreInfo() const;
+    void displayProducts() const;
 };
 
 #endif

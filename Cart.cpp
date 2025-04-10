@@ -1,34 +1,45 @@
 #include "Cart.h"
 #include <iostream>
+#include <iomanip>
+
+using namespace std;
 
 Cart::Cart() : totalPrice(0) {}
 
 void Cart::addItem(const Product& product) {
+    if (!product.isInStock()) {
+        cout << "Cannot add " << product.getName() << " - out of stock.\n";
+        return;
+    }
     items.push_back(product);
     totalPrice += product.getPrice();
 }
 
-void Cart::removeItem(int productId) {
+bool Cart::removeItem(int productId) {
     for (auto it = items.begin(); it != items.end(); ++it) {
         if (it->getId() == productId) {
             totalPrice -= it->getPrice();
             items.erase(it);
-            break;
+            cout << "Item removed from cart.\n";
+            return true;
         }
     }
+    cout << "Item not found in cart.\n";
+    return false;
 }
 
 void Cart::displayCart() const {
     if (items.empty()) {
-        std::cout << "Cart is empty!\n";
+        cout << "Cart is empty!\n";
         return;
     }
 
-    std::cout << "Cart Contents:\n";
+    cout << "Cart Contents:\n";
     for (const auto& item : items) {
         item.displayProductInfo();
     }
-    std::cout << "Total Price: $" << totalPrice << std::endl;
+    cout << fixed << setprecision(2);
+    cout << "Total Price: $" << totalPrice << endl;
 }
 
 void Cart::clearCart() {

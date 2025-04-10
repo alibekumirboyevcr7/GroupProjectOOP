@@ -1,22 +1,33 @@
 #include "Admin.h"
 #include <iostream>
-#include <algorithm> // Include for std::remove
+#include <algorithm>
 
-Admin::Admin(int id, std::string name, std::string email, std::string password, std::string address, std::string phone)
+using namespace std;
+
+Admin::Admin(int id, string name, string email, string password, string address, string phone)
     : User(id, name, email, password, address, phone) {}
 
-void Admin::addPermission(std::string permission) {
-    permissions.push_back(permission);
+void Admin::addPermission(string permission) {
+    if (find(permissions.begin(), permissions.end(), permission) == permissions.end()) {
+        permissions.push_back(permission);
+    } else {
+        cout << "Permission already granted.\n";
+    }
 }
 
-void Admin::removePermission(std::string permission) {
-    auto it = std::remove(permissions.begin(), permissions.end(), permission);
-    permissions.erase(it, permissions.end()); // Corrected: Use the returned iterator
+void Admin::removePermission(string permission) {
+    auto it = remove(permissions.begin(), permissions.end(), permission);
+    if (it != permissions.end()) {
+        permissions.erase(it, permissions.end());
+        cout << "Permission removed.\n";
+    } else {
+        cout << "Permission not found.\n";
+    }
 }
 
 void Admin::displayPermissions() const {
-    std::cout << "Admin Permissions: ";
+    cout << "Admin Permissions: ";
     for (const auto& perm : permissions)
-        std::cout << perm << ", ";
-    std::cout << std::endl;
+        cout << perm << ", ";
+    cout << endl;
 }

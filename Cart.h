@@ -12,11 +12,12 @@ private:
 public:
     Cart();
     void addItem(const Product& product);
-    void removeItem(int productId);
+    bool removeItem(int productId);
     void displayCart() const;
-    void clearCart();  // Added clearCart() for checkout
-    float getTotalPrice() const { return totalPrice; }  // Needed for payment
-    bool isEmpty() const { return items.empty(); }  // Added isEmpty()
+    int getItemCount() const { return items.size(); }
+    void clearCart();
+    float getTotalPrice() const { return totalPrice; }
+    bool isEmpty() const { return items.empty(); }
 };
 
 #endif

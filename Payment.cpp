@@ -1,33 +1,35 @@
 #include "Payment.h"
-#include <cstdlib>  // For rand()
+#include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <stdexcept>
 
-Payment::Payment(int id, float amount, std::string method)
+using namespace std;
+
+Payment::Payment(int id, float amount, string method)
     : id(id), amount(amount), method(method), status("Pending") {
-    std::srand(std::time(0));
-    if (method == "Credit Card" || method == "PayPal") {
-        balance = static_cast<float>(std::rand() % 10001); // Random value between $0 - $10,000
-    } else {
-        balance = 0; // Default for other methods
+
+    if (method != "Credit Card" && method != "PayPal") {
+        throw invalid_argument("Unsupported payment method: " + method);
     }
+
+    balance = static_cast<float>(rand() % 10001);
 }
 
-
 void Payment::processPayment() {
-    std::cout << "Payment method: " << method << std::endl;
-    std::cout << "Available balance: $" << balance << std::endl;
+    cout << "Payment method: " << method << endl;
+    cout << "Available balance: $" << balance << endl;
 
     if (balance >= amount) {
         balance -= amount;
         status = "Completed";
-        std::cout << "Payment successful! New balance: $" << balance << std::endl;
+        cout << "Payment successful! New balance: $" << balance << endl;
     } else {
         status = "Failed - Insufficient Funds";
-        std::cout << "Payment failed! Not enough balance.\n";
+        cout << "Payment failed! Not enough balance.\n";
     }
 }
 
 void Payment::displayPaymentInfo() const {
-    std::cout << "Payment ID: " << id << " | Amount: $" << amount << " | Status: " << status << " | Balance: $" << balance << std::endl;
+    cout << "Payment ID: " << id << " | Amount: $" << amount << " | Status: " << status << " | Balance: $" << balance << endl;
 }
